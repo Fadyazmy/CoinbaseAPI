@@ -1,8 +1,9 @@
 var Client = require('coinbase').Client;
+//var client = new Client({'apiKey': mykey, 'apiSecret': mysecret});
 
 var client = new Client({
-  'apiKey': 'API KEY',
-  'apiSecret': 'API SECRET',
+  'apiKey': '',
+  'apiSecret': '',
   'baseApiUri': 'https://api.sandbox.coinbase.com/v2/',
   'tokenUri': 'https://api.sandbox.coinbase.com/oauth/token'
 });
@@ -20,7 +21,14 @@ client.getAccounts({}, function(err, accounts) {
 });
 
 
-// refresh the account
-client.getAccount(primaryAccount.id, function(err, acct) {
-  console.log(acct.name + ': ' + acct.balance.amount + ' ' + acct.balance.currency);
+
+//Dummy sender email
+var args = {
+  "to": "user1@example.com",
+  "amount": "1.000",
+  "currency": "CAD",
+  "description": "Sample transaction for Bitcoin event"
+};
+account.sendMoney(args, function(err, txn) {
+  console.log('my txn id is: ' + txn.id);
 });
